@@ -36,7 +36,7 @@ int sc_memoryGet(int address, int *value) {
 		return -1;
 	}
 
-	*value = memoryArr[address];
+	*value = memArr[address];
 
 	return 0;
 }
