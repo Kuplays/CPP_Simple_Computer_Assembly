@@ -79,3 +79,12 @@ int sc_regSet(int regFlag, int value) {
 
 	return 0;
 }
+
+int sc_regGet(int regFlag, int *value) {
+	if (regFlag < 0 || regFlag > 2)
+		return -1;
+
+	*value = (REG >> (regFlag -1)) & 0x1;
+		
+	return 0;
+}
