@@ -49,3 +49,15 @@ int sc_memorySave(char *fName) {
 
 	return 0;
 }
+
+int sc_memoryLoad(char *fName) {
+	FILE *file = fopen(fName, "rb");
+
+	if (!file)
+		return -1;
+
+	fread(memArr, MEM_COUNT, sizeof(memArr), file);
+	fclose(file);
+
+	return 0;
+}
