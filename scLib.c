@@ -102,3 +102,16 @@ int sc_commandEncode(int command, int operand, int *value) {
 	sc_regSet(F_WRONG_COM, 1);
 	return -1;
 }
+
+int sc_commandDecode(int value, int *command, int* operand) {
+	if (value == NULL || command == NULL || operand == NULL) {
+		sc_regSet(F_WRONG_COM, 1);
+
+		return -1;
+	}
+
+	*operand = value & 0x0F;
+	*command = (value >> 4) & 0x0F;
+
+	return 0;
+}
