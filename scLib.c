@@ -88,3 +88,17 @@ int sc_regGet(int regFlag, int *value) {
 		
 	return 0;
 }
+
+int sc_commandEncode(int command, int operand, int *value) {
+	int i;
+	for (i = 0; i < COM_COUNT; i++) {
+		if (command == comArr[i]) {
+			*value = command << 4 | (0x0F & operand);
+			sc_regSet(F_WRONG_COM, 0);
+			return 0;
+		}
+	}
+
+	sc_regSet(F_WRONG_COM, 1);
+	return -1;
+}
