@@ -40,3 +40,12 @@ int sc_memoryGet(int address, int *value) {
 
 	return 0;
 }
+
+int sc_memorySave(char *fName) {
+	FILE *file = fopen(fName, "wb");
+
+	fwrite(memArr, MEM_COUNT, sizeof(memArr), file);
+	fclose(file);
+
+	return 0;
+}
