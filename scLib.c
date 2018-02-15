@@ -28,3 +28,15 @@ int sc_memorySet(int address, int value) {
 
 	return 0;
 }
+
+int sc_memoryGet(int address, int *value) {
+	if (address < 0 || address > MEM_COUNT) {
+		//sc_regSet(F_BOUNDS, 1);
+
+		return -1;
+	}
+
+	*value = memoryArr[address];
+
+	return 0;
+}
