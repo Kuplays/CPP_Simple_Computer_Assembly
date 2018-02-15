@@ -16,3 +16,15 @@ int sc_memoryInit() {
 
 	return 0;
 }
+
+int sc_memorySet(int address, int value) {
+	if (address < 0 || address > MEM_COUNT) {
+		//sc_regSet(F_BOUNDS, 1);
+
+		return -1;
+	}
+
+	memArr[address] = value;
+
+	return 0;
+}
