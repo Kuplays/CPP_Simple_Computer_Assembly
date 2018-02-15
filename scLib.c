@@ -17,6 +17,12 @@ int sc_memoryInit() {
 	return 0;
 }
 
+int sc_regInit() {
+	REG = 0;
+
+	return 0;
+}
+
 int sc_memorySet(int address, int value) {
 	if (address < 0 || address > MEM_COUNT) {
 		//sc_regSet(F_BOUNDS, 1);
