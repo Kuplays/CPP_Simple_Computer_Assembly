@@ -1,8 +1,6 @@
 #ifndef SCLIB_H
 #define SCLIB_H
 
-#define clear() printf("\033[H\033[J")
-
 #define MEM_COUNT 100
 #define COM_COUNT 38
 
