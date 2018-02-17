@@ -2,8 +2,6 @@
 #include <stdlib.h>
 #include "scLib.h"
 
-#define clear() printf("\033[H\033[J")
-
 void printMem();
 
 int main() {
@@ -70,15 +68,4 @@ int main() {
 		}
 	}
 
-}
-
-void printMem() {
-	int i, lineDrop = 1;
-	printf("\n==================MEMORY===================\n");
-	for (i = 0; i < MEM_COUNT; i++) {
-		printf("0x%X ", memArr[i]);
-		if (lineDrop % 10 == 0) printf("\n");
-		lineDrop++;
-	}
-	printf("\n===========================================\n");
 }

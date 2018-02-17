@@ -1,11 +1,15 @@
 #ifndef SCLIB_H
 #define SCLIB_H
 
+#define clear() printf("\033[H\033[J")
+
 #define MEM_COUNT 100
 #define COM_COUNT 38
 
 #define F_BOUNDS 1
 #define F_WRONG_COM 2
+
+#define ENCODE 127
 
 int memArr[MEM_COUNT];
 int comArr[COM_COUNT];
@@ -21,5 +25,7 @@ int sc_regSet(int, int);
 int sc_regGet(int, int*);
 int sc_commandEncode(int, int, int*);
 int sc_commandDecode(int, int*, int*);
+
+void printMem();
 
 #endif
