@@ -25,24 +25,26 @@ int sc_regInit() {
 
 int sc_memorySet(int address, int value) {
 	if (address < 0 || address > MEM_COUNT) {
-		//sc_regSet(F_BOUNDS, 1);
+		sc_regSet(F_BOUNDS, 1);
 
 		return -1;
 	}
 
 	memArr[address] = value;
+	sc_regSet(F_BOUNDS, 0);
 
 	return 0;
 }
 
 int sc_memoryGet(int address, int *value) {
 	if (address < 0 || address > MEM_COUNT) {
-		//sc_regSet(F_BOUNDS, 1);
+		sc_regSet(F_BOUNDS, 1);
 
 		return -1;
 	}
 
 	*value = memArr[address];
+	sc_regSet(F_BOUNDS, 0);
 
 	return 0;
 }
@@ -50,7 +52,7 @@ int sc_memoryGet(int address, int *value) {
 int sc_memorySave(char *fName) {
 	FILE *file = fopen(fName, "wb");
 
-	fwrite(memArr, MEM_COUNT, sizeof(memArr), file);
+	fwrite(memArr, MEM_COUNT, sizeof(memArr[0]), file);
 	fclose(file);
 
 	return 0;
@@ -62,14 +64,14 @@ int sc_memoryLoad(char *fName) {
 	if (!file)
 		return -1;
 
-	fread(memArr, MEM_COUNT, sizeof(memArr), file);
+	fread(memArr, MEM_COUNT, sizeof(memArr[0]), file);
 	fclose(file);
 
 	return 0;
 }
 
 int sc_regSet(int regFlag, int value) {
-	if (value < 0 || value > 1 || regFlag < 0 || regFlag > 2) //ADD MORE FLAGS
+	if (value < 0 || value > 1 || regFlag < 1 || regFlag > 2) //ADD MORE FLAGS
 		return -1;
 	
 	if (value == 1)
