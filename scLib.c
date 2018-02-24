@@ -95,7 +95,7 @@ int sc_commandEncode(int command, int operand, int *value) {
 	int i;
 	for (i = 0; i < COM_COUNT; i++) {
 		if (command == comArr[i]) {
-			*value = command << 4 | (operand & ENCODE);
+			*value = command << 8 | (operand & ENCODE);
 			sc_regSet(F_WRONG_COM, 0);
 			return 0;
 		}
@@ -113,7 +113,7 @@ int sc_commandDecode(int value, int *command, int* operand) {
 	}
 
 	*operand = value & ENCODE;
-	*command = value >> 4;
+	*command = value >> 8;
 
 	return 0;
 }
