@@ -7,8 +7,9 @@
 #define GOTO "\E[%d;%dH"
 #define BG_COLOR "\E[4%dm"
 #define FG_COLOR "\E[3%dm"
+#define DEFAULT_COLOR "\e[0m"
 
-enum Color {BLACK = 0, WHITE = 7, GREEN = 2, RED = 1};
+enum Color {DEFAULT = 9, BLACK = 0, WHITE = 7, GREEN = 2, RED = 1};
 
 int mt_clrscr();
 int mt_gotoXY(int, int);
