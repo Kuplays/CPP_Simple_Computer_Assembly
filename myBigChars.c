@@ -36,3 +36,25 @@ int bc_box(int x1, int y1, int x2, int y2) {
 
 	return 0;
 }
+
+int bc_printBigChar(int big[2], int x, int y, enum Color fgColor, enum Color bgColor) {
+	int i, j, temp, pointer = 0;
+	mt_gotoXY(x, y);
+    mt_setfgColor(fgColor);
+    mt_setbgColor(bgColor);
+
+    for (i = 0; i < 64; i += 8) {
+        if (i == 32) pointer++;
+        temp = big[pointer] >> i;
+        for (j = 7; j >= 0; --j) {
+            if (temp >> j & 0x1)
+                bc_printA("a");
+            else
+                bc_printA(" ");
+        }
+        x++;
+        mt_gotoXY(x, y);
+	}
+
+	return 0;
+}
