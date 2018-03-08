@@ -8,10 +8,10 @@ void showMenu(int, int);
 
 int main() {
 	mt_clrscr();
-	bc_box(1, 1, 10, 10);
-	bc_box(1, 12, 20, 20);
-	bc_box(1, 33, 4, 40);
-	mt_gotoXY(5, 33);
+	int big[2];
+
+	bc_printBigChar(big, 1, 14, GREEN, DEFAULT);
+	printf(DEFAULT_COLOR);
 
 	// int choice, address = 0, value = 0, x, commandInput = 0, operandInput = 0, resultEncoded = 0, resultDecoded = 0;
 	// int memFlag = 0, comFlag = 0;
