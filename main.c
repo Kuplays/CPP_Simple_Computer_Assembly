@@ -9,8 +9,78 @@ void showMenu(int, int);
 int main() {
 	mt_clrscr();
 	int big[2];
+	bc_setBigCharPos(big, 0, 0, 1);
+	bc_setBigCharPos(big, 1, 0, 1);
+	bc_setBigCharPos(big, 2, 0, 1);
+	bc_setBigCharPos(big, 3, 0, 1);
+	bc_setBigCharPos(big, 4, 0, 1);
+	bc_setBigCharPos(big, 5, 0, 1);
+	bc_setBigCharPos(big, 6, 0, 1);
+	bc_setBigCharPos(big, 7, 0, 1);
 
-	bc_printBigChar(big, 1, 14, GREEN, DEFAULT);
+	bc_setBigCharPos(big, 0, 1, 0);
+	bc_setBigCharPos(big, 1, 1, 0);
+	bc_setBigCharPos(big, 2, 1, 0);
+	bc_setBigCharPos(big, 3, 1, 0);
+	bc_setBigCharPos(big, 4, 1, 0);
+	bc_setBigCharPos(big, 5, 1, 0);
+	bc_setBigCharPos(big, 6, 1, 0);
+	bc_setBigCharPos(big, 7, 1, 0);
+
+	bc_setBigCharPos(big, 0, 2, 1);
+	bc_setBigCharPos(big, 1, 2, 1);
+	bc_setBigCharPos(big, 2, 2, 1);
+	bc_setBigCharPos(big, 3, 2, 1);
+	bc_setBigCharPos(big, 4, 2, 1);
+	bc_setBigCharPos(big, 5, 2, 1);
+	bc_setBigCharPos(big, 6, 2, 1);
+	bc_setBigCharPos(big, 7, 2, 1);
+
+	bc_setBigCharPos(big, 0, 3, 0);
+	bc_setBigCharPos(big, 1, 3, 0);
+	bc_setBigCharPos(big, 2, 3, 0);
+	bc_setBigCharPos(big, 3, 3, 0);
+	bc_setBigCharPos(big, 4, 3, 0);
+	bc_setBigCharPos(big, 5, 3, 0);
+	bc_setBigCharPos(big, 6, 3, 0);
+	bc_setBigCharPos(big, 7, 3, 0);
+
+	bc_setBigCharPos(big, 0, 4, 1);
+	bc_setBigCharPos(big, 1, 4, 1);
+	bc_setBigCharPos(big, 2, 4, 1);
+	bc_setBigCharPos(big, 3, 4, 1);
+	bc_setBigCharPos(big, 4, 4, 1);
+	bc_setBigCharPos(big, 5, 4, 1);
+	bc_setBigCharPos(big, 6, 4, 1);
+	bc_setBigCharPos(big, 7, 4, 1);
+
+	bc_setBigCharPos(big, 0, 5, 0);
+	bc_setBigCharPos(big, 1, 5, 0);
+	bc_setBigCharPos(big, 2, 5, 0);
+	bc_setBigCharPos(big, 3, 5, 0);
+	bc_setBigCharPos(big, 4, 5, 0);
+	bc_setBigCharPos(big, 5, 5, 0);
+	bc_setBigCharPos(big, 6, 5, 0);
+	bc_setBigCharPos(big, 7, 5, 0);
+
+	bc_setBigCharPos(big, 0, 6, 1);
+	bc_setBigCharPos(big, 1, 6, 1);
+	bc_setBigCharPos(big, 2, 6, 1);
+	bc_setBigCharPos(big, 3, 6, 1);
+	bc_setBigCharPos(big, 4, 6, 1);
+	bc_setBigCharPos(big, 5, 6, 1);
+	bc_setBigCharPos(big, 6, 6, 1);
+	bc_setBigCharPos(big, 7, 6, 1);
+
+	bc_setBigCharPos(big, 0, 7, 0);
+	bc_setBigCharPos(big, 1, 7, 0);
+	bc_setBigCharPos(big, 2, 7, 0);
+	bc_setBigCharPos(big, 3, 7, 0);
+	bc_setBigCharPos(big, 4, 7, 0);
+	bc_setBigCharPos(big, 5, 7, 0);
+	bc_setBigCharPos(big, 6, 7, 0);
+	bc_setBigCharPos(big, 7, 7, 0);
+	bc_printBigChar(big, 1, 1, GREEN, DEFAULT);
 	printf(DEFAULT_COLOR);
 
 	// int choice, address = 0, value = 0, x, commandInput = 0, operandInput = 0, resultEncoded = 0, resultDecoded = 0;
