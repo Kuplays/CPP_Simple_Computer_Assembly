@@ -81,6 +81,7 @@ int main() {
 	bc_setBigCharPos(big, 6, 7, 0);
 	bc_setBigCharPos(big, 7, 7, 0);
 	bc_printBigChar(big, 1, 1, GREEN, DEFAULT);
+	printf("BIG[0]: %d\nBIG[1]: %d\n", big[0], big[1]);
 	printf(DEFAULT_COLOR);
 
 	// int choice, address = 0, value = 0, x, commandInput = 0, operandInput = 0, resultEncoded = 0, resultDecoded = 0;
