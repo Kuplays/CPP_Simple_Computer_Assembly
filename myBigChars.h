@@ -4,6 +4,8 @@
 #define ENTER_MODE "\E(0"
 #define EXIT_MODE "\E(B"
 
+int BIG[2];
+
 int bc_printA(char*);
 int bc_box(int, int, int, int);
 int bc_printBigChar(int[2], int, int, enum Color, enum Color);

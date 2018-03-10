@@ -3,87 +3,44 @@
 #include "scLib.h"
 #include "myTerm.h"
 #include "myBigChars.h"
+#include "UserInterface.h"
 
 void showMenu(int, int);
 
+//+ BIG[0]: 2115508224 BIG[1]: 6168
+//0 BIG[0]: -1313766913 BIG[1]: -8289919
+//1 BIG[0]: -1057427232 BIG[1]: -1061109568
+//2 BIG[0]: -8355586 BIG[1]: -16708351
+//3 BIG[0]: -25132808 BIG[1]: -25124736
+//4 BIG[0]: -8289920 BIG[1]: -2139049856
+//5 BIG[0]: -16711169 BIG[1]: -8343424
+//6 BIG[0]: -16711297 BIG[1]: -8277631
+//7 BIG[0]: -1061109505 BIG[1]: -1061109568
+//8 BIG[0]: -8289793 BIG[1]: -8281727
+//9 BIG[0]: -2120121857 BIG[1]: -25132801
+//A BIG[0]: -8289793 BIG[1]: -2122219135
+//B BIG[0]: -14606017 BIG[1]: -8286847
+//C BIG[0]: 16843516 BIG[1]: -66977535
+//D BIG[0]: -1925111521 BIG[1]: 522273153
+//E BIG[0]: 1057030655 BIG[1]: -16711423
+//F BIG[0]: 1057030655 BIG[1]: 16843009
+
 int main() {
+	sc_regInit();
+	sc_memoryInit();
+	memArr[0] = 0xA90B;
+	accumValue = 0;
+	opCounter = 0;
+	memoryPointer = 0;
 	mt_clrscr();
-	int big[2];
-	bc_setBigCharPos(big, 0, 0, 1);
-	bc_setBigCharPos(big, 1, 0, 1);
-	bc_setBigCharPos(big, 2, 0, 1);
-	bc_setBigCharPos(big, 3, 0, 1);
-	bc_setBigCharPos(big, 4, 0, 1);
-	bc_setBigCharPos(big, 5, 0, 1);
-	bc_setBigCharPos(big, 6, 0, 1);
-	bc_setBigCharPos(big, 7, 0, 1);
-
-	bc_setBigCharPos(big, 0, 1, 0);
-	bc_setBigCharPos(big, 1, 1, 0);
-	bc_setBigCharPos(big, 2, 1, 0);
-	bc_setBigCharPos(big, 3, 1, 0);
-	bc_setBigCharPos(big, 4, 1, 0);
-	bc_setBigCharPos(big, 5, 1, 0);
-	bc_setBigCharPos(big, 6, 1, 0);
-	bc_setBigCharPos(big, 7, 1, 0);
-
-	bc_setBigCharPos(big, 0, 2, 1);
-	bc_setBigCharPos(big, 1, 2, 1);
-	bc_setBigCharPos(big, 2, 2, 1);
-	bc_setBigCharPos(big, 3, 2, 1);
-	bc_setBigCharPos(big, 4, 2, 1);
-	bc_setBigCharPos(big, 5, 2, 1);
-	bc_setBigCharPos(big, 6, 2, 1);
-	bc_setBigCharPos(big, 7, 2, 1);
-
-	bc_setBigCharPos(big, 0, 3, 0);
-	bc_setBigCharPos(big, 1, 3, 0);
-	bc_setBigCharPos(big, 2, 3, 0);
-	bc_setBigCharPos(big, 3, 3, 0);
-	bc_setBigCharPos(big, 4, 3, 0);
-	bc_setBigCharPos(big, 5, 3, 0);
-	bc_setBigCharPos(big, 6, 3, 0);
-	bc_setBigCharPos(big, 7, 3, 0);
-
-	bc_setBigCharPos(big, 0, 4, 1);
-	bc_setBigCharPos(big, 1, 4, 1);
-	bc_setBigCharPos(big, 2, 4, 1);
-	bc_setBigCharPos(big, 3, 4, 1);
-	bc_setBigCharPos(big, 4, 4, 1);
-	bc_setBigCharPos(big, 5, 4, 1);
-	bc_setBigCharPos(big, 6, 4, 1);
-	bc_setBigCharPos(big, 7, 4, 1);
-
-	bc_setBigCharPos(big, 0, 5, 0);
-	bc_setBigCharPos(big, 1, 5, 0);
-	bc_setBigCharPos(big, 2, 5, 0);
-	bc_setBigCharPos(big, 3, 5, 0);
-	bc_setBigCharPos(big, 4, 5, 0);
-	bc_setBigCharPos(big, 5, 5, 0);
-	bc_setBigCharPos(big, 6, 5, 0);
-	bc_setBigCharPos(big, 7, 5, 0);
-
-	bc_setBigCharPos(big, 0, 6, 1);
-	bc_setBigCharPos(big, 1, 6, 1);
-	bc_setBigCharPos(big, 2, 6, 1);
-	bc_setBigCharPos(big, 3, 6, 1);
-	bc_setBigCharPos(big, 4, 6, 1);
-	bc_setBigCharPos(big, 5, 6, 1);
-	bc_setBigCharPos(big, 6, 6, 1);
-	bc_setBigCharPos(big, 7, 6, 1);
-
-	bc_setBigCharPos(big, 0, 7, 0);
-	bc_setBigCharPos(big, 1, 7, 0);
-	bc_setBigCharPos(big, 2, 7, 0);
-	bc_setBigCharPos(big, 3, 7, 0);
-	bc_setBigCharPos(big, 4, 7, 0);
-	bc_setBigCharPos(big, 5, 7, 0);
-	bc_setBigCharPos(big, 6, 7, 0);
-	bc_setBigCharPos(big, 7, 7, 0);
-	bc_printBigChar(big, 1, 1, GREEN, DEFAULT);
-	printf("BIG[0]: %d\nBIG[1]: %d\n", big[0], big[1]);
-	printf(DEFAULT_COLOR);
-
+	displayMemory();
+	displayAccumulator();
+	displayCounter();
+	displayOperation();
+	displayFlags();
+	displayMenu();
+	displayBigCharArea();
+	mt_gotoXY(25, 1);
 	// int choice, address = 0, value = 0, x, commandInput = 0, operandInput = 0, resultEncoded = 0, resultDecoded = 0;
 	// int memFlag = 0, comFlag = 0;
 

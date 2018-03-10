@@ -11,7 +11,7 @@
 
 int memArr[MEM_COUNT];
 int comArr[COM_COUNT];
-int REG;
+int REG, accumValue, opCounter, operand, command, memoryPointer;
 
 int sc_memoryInit();
 int sc_memorySet(int, int);
