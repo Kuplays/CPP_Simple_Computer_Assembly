@@ -11,4 +11,5 @@ int bc_setBigCharPos(int*, int, int, int);
 int bc_getBigCharPos(int*, int, int, int*);
 int bc_bigCharWrite(int, int*, int);
 int bc_bigCharRead(int, int*, int, int*);
+void bc_setBig(int*, int);
 #endif
