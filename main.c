@@ -28,7 +28,7 @@ int main()
     accumValue = 0;
     opCounter = 0;
 
-    enum Keys key = UNKNOWN;
+    enum Keys key = NONE;
 
 	showAll();
     

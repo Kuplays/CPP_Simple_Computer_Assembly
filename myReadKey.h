@@ -1,7 +1,7 @@
 #ifndef MYREADKEY_H
 #define MYREADKEY_H
 
-enum Keys {UP, DOWN,LEFT, RIGHT, F5, F6, ESC, ENTER, LOAD, SAVE, RUN, STEP, RESET, QUIT, EDIT, UNKNOWN};
+enum Keys {UP, DOWN,LEFT, RIGHT, F5, F6, ESC, ENTER, LOAD, SAVE, RUN, STEP, RESET, QUIT, EDIT, NONE};
 
 void termInit();
 void defaultTermSettings(struct termios *);

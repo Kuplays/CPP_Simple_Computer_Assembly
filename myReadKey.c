@@ -77,11 +77,11 @@ int rk_readKey(enum Keys *key) {
             }
             break;
         default:
-            *key = UNKNOWN;
+            *key = NONE;
         }
-        break; // case ESC
+        break;
     default:
-        *key = UNKNOWN;
+        *key = NONE;
         break;
     }
     rk_myTermRegime(&termState, 1, 1, 1, 1, 1);
