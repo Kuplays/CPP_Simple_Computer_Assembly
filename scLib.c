@@ -118,6 +118,11 @@ int sc_commandDecode(int value, int *command, int* operand) {
 	return 0;
 }
 
+void timerStart()
+{
+	setitimer (ITIMER_REAL, &nval, &oval);
+}
+
 void printMem() {
 	int i, lineDrop = 1;
 	for (i = 0; i < MEM_COUNT; i++) {

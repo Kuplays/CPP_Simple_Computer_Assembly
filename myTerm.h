@@ -9,6 +9,8 @@
 #define FG_COLOR "\E[3%dm"
 #define DEFAULT_COLOR "\e[0m"
 
+#define TERM "/dev/tty"
+
 enum Color {DEFAULT = 9, BLACK = 0, WHITE = 7, GREEN = 2, RED = 1};
 
 int mt_clrscr();
