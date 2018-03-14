@@ -113,7 +113,7 @@ void displayBigCharArea() {
 	int i;
 	for (i = 0; i < 5; i++) {
 		bc_setBig(BIG, buffer[i]);
-		bc_printBigChar(BIG, 14, y, RED, DEFAULT);
+		bc_printBigChar(BIG, 14, y, DEFAULT, DEFAULT);
 		y += 9;
 	}
 }
