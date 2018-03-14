@@ -64,9 +64,9 @@ int main()
 			if (key == F5) inputAccum();
 			if (key == F6) inputCounter();
 			if (key == RIGHT) if (memoryPointer < 99) ++memoryPointer;
-			if (key == LEFT ) if (memoryPointer >  0) --memoryPointer;
-			if (key == UP   ) if (memoryPointer - 10 >=  0) memoryPointer -= 10;
-			if (key == DOWN ) if (memoryPointer + 10 < 100) memoryPointer += 10;
+			if (key == LEFT) if (memoryPointer >  0) --memoryPointer;
+			if (key == UP) if (memoryPointer - 10 >=  0) memoryPointer -= 10;
+			if (key == DOWN) if (memoryPointer + 10 < 100) memoryPointer += 10;
 			if (key == LOAD) sc_memoryLoad("mem.dat");
 			if (key == SAVE) sc_memorySave("mem.dat");
 			if (key == EDIT) inputMemory(); 
