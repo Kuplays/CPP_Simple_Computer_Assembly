@@ -19,20 +19,17 @@ int main()
 {
     signal (SIGALRM, signalhandler);
     signal (SIGUSR1, reset);
-
-    nval.it_interval.tv_sec  = 1;
-    nval.it_interval.tv_usec = 0;
-    nval.it_value.tv_sec  = 1;
-    nval.it_value.tv_usec = 0;	
 	
 	sc_memoryInit();
     sc_regInit();
+
     termInit();
+
     accumValue = 0;
     opCounter = 0;
 
     enum Keys key = UNKNOWN;
-	
+
 	showAll();
     
     flag_key = 0;
@@ -61,20 +58,24 @@ int main()
 				timerStart();        
 			}
 			
-			if (key == F5) inputAccum();
-			if (key == F6) inputCounter();
 			if (key == RIGHT) if (memoryPointer < 99) ++memoryPointer;
 			if (key == LEFT) if (memoryPointer >  0) --memoryPointer;
 			if (key == UP) if (memoryPointer - 10 >=  0) memoryPointer -= 10;
 			if (key == DOWN) if (memoryPointer + 10 < 100) memoryPointer += 10;
+
+			if (key == F5) inputAccum();
+			if (key == F6) inputCounter();
+			if (key == EDIT) inputMemory(); 
+
 			if (key == LOAD) sc_memoryLoad("mem.dat");
 			if (key == SAVE) sc_memorySave("mem.dat");
-			if (key == EDIT) inputMemory(); 
+
 			if (key == RESET) {
 				sc_memoryInit();
 				sc_regInit();
 				showAll();
 			}
+
 			showAll();
 		}
 		

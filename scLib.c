@@ -14,6 +14,12 @@ int sc_memoryInit() {
 
 	memcpy(comArr, tempArr, (sizeof(tempArr)));
 
+	accumValue = 0;
+	opCounter = 0;
+	command = 0;
+	operand = 0;
+	memoryPointer = 0;
+
 	return 0;
 }
 
@@ -31,7 +37,6 @@ int sc_memorySet(int address, int value) {
 	}
 
 	memArr[address] = value;
-	sc_regSet(F_BOUNDS, 0);
 
 	return 0;
 }
@@ -44,7 +49,6 @@ int sc_memoryGet(int address, int *value) {
 	}
 
 	*value = memArr[address];
-	sc_regSet(F_BOUNDS, 0);
 
 	return 0;
 }

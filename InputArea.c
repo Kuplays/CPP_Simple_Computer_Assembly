@@ -29,6 +29,7 @@ void inputCounter()
 		memoryPointer = opCounter;
 	else
 		sc_regSet(F_BOUNDS, 1);
+    
     clearInput();
     close(term);
 }

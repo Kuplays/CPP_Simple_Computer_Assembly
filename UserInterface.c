@@ -22,8 +22,6 @@ void displayMemory() {
 	for (i = 1; i <= 100; i++) {
 		sc_memoryGet(i - 1, &value);
 
-		sc_commandDecode(value, &command, &operand);
-
 		if (memoryPointer == i - 1) mt_setbgColor(RED);
 		printf("+%04X ", value);
 		mt_setbgColor(DEFAULT);
@@ -73,8 +71,6 @@ void displayOperation() {
 	mt_gotoXY(8, 65);
 	sc_memoryGet(memoryPointer, &value);
 
-	sc_commandDecode(value, &command, &operand);
-
 	close(term);
 
 	mt_gotoXY(25, 1);
@@ -86,6 +82,14 @@ void displayFlags() {
 	bc_box(10, 63, 3, 18);
 	mt_gotoXY(10, 65);
 	printf("FLAGS");
+
+	int flagVal;
+    mt_gotoXY(11, 65);
+	sc_regGet(F_WRONG_COM, &flagVal); if (flagVal == 1) printf("WC"); else printf("");
+	mt_gotoXY(11, 68);
+	sc_regGet(F_ISRUN, &flagVal); if (flagVal == 1) printf("IR"); else printf("");
+	mt_gotoXY(11, 69);
+	sc_regGet(F_BOUNDS, &flagVal); if (flagVal == 1) printf("OM"); else printf("");
     
 	mt_gotoXY(25, 1);
 }
@@ -125,7 +129,6 @@ void displayBigCharArea() {
 	BIG[1] = 0;
 
 	sc_memoryGet(memoryPointer, &value);
-	sc_commandDecode(value, &command, &operand);
 
 	sprintf(buffer, "+%04X", value);
 
