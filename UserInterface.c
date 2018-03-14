@@ -1,5 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <unistd.h>
+#include <fcntl.h>
 
 #include "UserInterface.h"
 #include "scLib.h"
@@ -9,6 +11,7 @@
 int command, operand, value;
 
 void displayMemory() {
+	int term = open(TERM, O_RDWR);
 	int k = 2, i;
 	bc_box(1, 1, 12, 62);
 	mt_gotoXY(1, 5);
@@ -27,9 +30,13 @@ void displayMemory() {
 
 		if (i % 10 == 0 && i != 0) {k++; mt_gotoXY(k, 2);}
 	}
+
+	mt_gotoXY(25, 1);
+	close(term);
 }
 
 void displayAccumulator() {
+	int term = open(TERM, O_RDWR);
 	bc_box(1, 63, 3, 18);
 	mt_gotoXY(1, 65);
 	printf("ACCUM");
@@ -37,9 +44,13 @@ void displayAccumulator() {
 
 	if (accumValue >= 0) {printf("+%04X", accumValue); mt_gotoXY(2, 69);}
 	else {printf("-%04X", (-1) * accumValue); mt_gotoXY(2, 69);}
+
+	close(term);
+	mt_gotoXY(25, 1);
 }
 
 void displayCounter() {
+	int term = open(TERM, O_RDWR);
 	bc_box(4, 63, 3, 18);
 	mt_gotoXY(4, 65);
 	printf("COUNTER");
@@ -48,36 +59,39 @@ void displayCounter() {
 	mt_gotoXY(5, 69);
 
 	printf("+%04X", opCounter);
+
+	close(term);
+
+	mt_gotoXY(25, 1);
 }
 
 void displayOperation() {
+	int term = open(TERM, O_RDWR);
 	bc_box(7, 63, 3, 18);
 	mt_gotoXY(7, 65);
-	printf("OPERATION");
+	printf("OPER");
 	mt_gotoXY(8, 65);
 	sc_memoryGet(memoryPointer, &value);
 
 	sc_commandDecode(value, &command, &operand);
-	//printf("+%04X", value);
+
+	close(term);
+
+	mt_gotoXY(25, 1);
 }
 
 void displayFlags() {
+	int terminal = open(TERM, O_RDWR);
+
 	bc_box(10, 63, 3, 18);
 	mt_gotoXY(10, 65);
 	printf("FLAGS");
-
-	int flagVal;
-	sc_regGet(F_BOUNDS, &flagVal);
-
-	if (flagVal == 1) {
-		mt_gotoXY(11, 63);
-		mt_setfgColor(RED);
-		printf("MEM");
-		mt_setfgColor(DEFAULT);
-	}
+    
+	mt_gotoXY(25, 1);
 }
 
 void displayMenu() {
+	int term = open(TERM, O_RDWR);
 	bc_box(13, 47, 10, 34);
 	mt_gotoXY(13, 49);
 	printf("MENU");
@@ -93,9 +107,14 @@ void displayMenu() {
 	printf("F5 - ACCUMULATOR");
 	mt_gotoXY(20, 49);
 	printf("F6 - COUNTER");
+
+	close(term);
+
+	mt_gotoXY(25, 1);
 }
 
 void displayBigCharArea() {
+	
 	char buffer[20];
 	int y = 2;
 	bc_box(13, 1, 10, 46);
@@ -116,4 +135,54 @@ void displayBigCharArea() {
 		bc_printBigChar(BIG, 14, y, DEFAULT, DEFAULT);
 		y += 9;
 	}
+
+	mt_gotoXY(25, 1);
+}
+
+void signalhandler (int signo)
+{
+	sc_regGet(F_ISRUN, &flag_key);
+	sc_regGet(F_IGNORE_FLAG, &flag_ign);
+	
+    if (opCounter < 99 && flag_key && !flag_ign) {
+		cu();		
+		showAll();
+	} else {		
+		sc_regSet(F_ISRUN, 0);
+		alarm(0);     
+	}
+	flag_key = 0;
+}
+
+void reset()
+{
+     sc_memoryInit();
+     sc_regInit();
+     showAll();
+}
+
+void clearInput()
+{
+    int term = open(TERM, O_RDWR);
+
+	int i;
+    mt_gotoXY (25, 1);
+    for (i = 0; i < 80; ++i)
+        write (term, " ", 1);
+    mt_gotoXY (25, 1);
+
+    close (term);
+}
+
+
+void showAll() {
+	mt_clrscr();
+	displayMemory();
+	displayAccumulator();
+	displayCounter();
+	displayOperation();
+	displayFlags();
+	displayMenu();
+	displayBigCharArea();
+	mt_gotoXY(25, 1);
 }

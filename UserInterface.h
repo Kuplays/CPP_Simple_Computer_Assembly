@@ -8,5 +8,9 @@ void displayCounter();
 void displayOperation();
 void displayFlags();
 void displayMenu();
+void signalhandler (int);
+void reset();
+void clearInput();
+void showAll();
 
 #endif
