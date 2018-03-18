@@ -118,7 +118,7 @@ void displayMenu() {
 }
 
 void displayBigCharArea() {
-	
+	mt_gotoXY(13, 1);
 	char buffer[20];
 	int y = 2;
 	bc_box(13, 1, 10, 46);
@@ -133,12 +133,11 @@ void displayBigCharArea() {
 	sprintf(buffer, "+%04X", value);
 
 	int i;
-	for (i = 0; i < 5; i++) {
+	for (i = 0; i < 5; ++i, y += 9) {
 		bc_setBig(BIG, buffer[i]);
 		bc_printBigChar(BIG, 14, y, DEFAULT, DEFAULT);
-		y += 9;
 	}
-
+	//getchar();
 	mt_gotoXY(25, 1);
 }
 

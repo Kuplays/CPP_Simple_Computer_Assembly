@@ -58,7 +58,7 @@ int main()
 				timerStart();        
 			}
 			
-			if (key == RIGHT) if (memoryPointer < 99) ++memoryPointer;
+			if (key == RIGHT) if (memoryPointer < 99) ++memoryPointer; mt_gotoXY(25, 1);
 			if (key == LEFT) if (memoryPointer >  0) --memoryPointer;
 			if (key == UP) if (memoryPointer - 10 >=  0) memoryPointer -= 10;
 			if (key == DOWN) if (memoryPointer + 10 < 100) memoryPointer += 10;
@@ -73,7 +73,6 @@ int main()
 			if (key == RESET) {
 				sc_memoryInit();
 				sc_regInit();
-				showAll();
 			}
 
 			showAll();
