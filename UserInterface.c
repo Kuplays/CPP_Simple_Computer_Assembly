@@ -76,6 +76,8 @@ void displayFlags() {
 	sc_regGet(F_ISRUN, &flagVal); if (flagVal == 1) printf("IR"); else printf("");
 	mt_gotoXY(11, 69);
 	sc_regGet(F_BOUNDS, &flagVal); if (flagVal == 1) printf("OM"); else printf("");
+	mt_gotoXY(11, 70);
+	sc_regGet(F_ZERO, &flagVal); if (flagVal == 1) printf("ZE"); else printf("");
     
 	mt_gotoXY(25, 1);
 }

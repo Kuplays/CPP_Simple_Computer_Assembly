@@ -15,6 +15,8 @@
 #include "myTerm.h"
 #include "alu.h"
 
+struct termios oldState, termState;
+
 int cu_callBack()
 {
 	int term = open(TERM, O_RDWR);
@@ -22,8 +24,26 @@ int cu_callBack()
 
 	if ((sc_memoryGet(memoryPointer, &value) == 0) && (sc_commandDecode(value, &command, &operand) == 0)) {
 		switch(command) {
+			case 10:
+				rk_myTermSave(&oldState);
+				defaultTermSettings(&termState);
+				tcsetattr(1, TCSANOW, &termState);
+				alarm(0);
+				int input;
+				printf("INPUT VALUE: ");
+				scanf("%d", &input);
+				sc_memorySet(operand, input);
+				rk_myTermRestore(&oldState);
+				timerStart();
+				++memoryPointer;
+				clearInput();
+			break;
+
+			case 11:
+			break;
+
 			case 40:
-			memoryPointer = operand;
+				memoryPointer = operand;
 			break;
 
 			default:

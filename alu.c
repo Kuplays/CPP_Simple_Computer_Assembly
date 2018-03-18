@@ -24,9 +24,19 @@ int alu(int command, int operand)
 	switch (command) {
 				
 		case 30:
-            accumValue = accumValue + operand;
-
+            accumValue += operand;
 		break;
+
+		case 31:
+			accumValue -= operand;
+			break;
+		case 32:
+			if (operand != 0) accumValue /= operand;
+			else sc_regSet(F_ZERO, 1);
+			break;
+		case 33:
+			accumValue *= operand;
+			break;
 
 		
 		default:
