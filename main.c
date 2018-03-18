@@ -27,10 +27,7 @@ int main()
     accumValue = 0;
     opCounter = 0;
 
-    nval.it_interval.tv_sec  = 1;
-    nval.it_interval.tv_usec = 0;
-    nval.it_value.tv_sec  = 1;
-	nval.it_value.tv_usec = 0; 
+    setTimerVals(1, 0);
 	
 	sc_memoryInit();
     sc_regInit();

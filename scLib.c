@@ -127,6 +127,13 @@ void timerStart()
 	setitimer (ITIMER_REAL, &nval, &oval);
 }
 
+void setTimerVals(int upperVal, int lowerVal) {
+	nval.it_interval.tv_sec  = upperVal;
+    nval.it_interval.tv_usec = lowerVal;
+    nval.it_value.tv_sec  = upperVal;
+	nval.it_value.tv_usec = lowerVal; 
+}
+
 void printMem() {
 	int i, lineDrop = 1;
 	for (i = 0; i < MEM_COUNT; i++) {

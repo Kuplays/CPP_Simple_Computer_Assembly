@@ -32,6 +32,7 @@ int sc_regGet(int, int*);
 int sc_commandEncode(int, int, int*);
 int sc_commandDecode(int, int*, int*);
 void timerStart();
+void setTimerVals(int, int);
 
 void printMem();
 
