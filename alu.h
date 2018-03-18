@@ -2,6 +2,5 @@
 #define ALU_H
 
 int alu(int command, int operand);
-int cu();
 
 #endif

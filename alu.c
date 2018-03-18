@@ -46,24 +46,3 @@ int alu(int command, int operand)
 	else
 		return 0;
 }
-
-int cu()
-{
-	int term = open(TERM, O_RDWR);
-	int flag_MEM, flag_ZERO, flag_WRONG, value = 0, command = 0, operand = 0, res;
-
-	if ((sc_memoryGet(memoryPointer, &value) == 0) && (sc_commandDecode(value, &command, &operand) == 0)) {
-		switch(command) {
-			case 40:
-			memoryPointer = operand;
-			break;
-
-			default:
-			alu(command, operand);
-			++memoryPointer;
-			break;	
-		}
-	}				
-	
-		return 0;
-}

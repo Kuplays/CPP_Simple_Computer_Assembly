@@ -14,6 +14,7 @@
 #include "scLib.h"
 #include "inputArea.h"
 #include "alu.h"
+#include "centralUnit.h"
 
 int main()
 {
@@ -45,7 +46,7 @@ int main()
 			sc_regSet(F_ISRUN, 0);
 			alarm(0); 
 			flag_key = 0;
-			cu();
+			cu_callBack();
 		}
 		
 		if (!flag_key) {

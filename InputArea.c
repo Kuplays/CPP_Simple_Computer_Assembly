@@ -10,19 +10,14 @@
 
 void inputAccum()
 {
-    int term = open(TERM, O_RDWR);
-
     printf("ENTER ACUUM VALUE: ");
     scanf("%d", &accumValue);
 
     clearInput();
-    close(term);
 }
 
 void inputCounter()
 {
-    int term = open(TERM, O_RDWR);
-
     printf("ENTER COUNTER: ");
     scanf("%d", &opCounter);
     if(opCounter >= 0 && opCounter < MEM_COUNT)
@@ -30,14 +25,11 @@ void inputCounter()
 	else
 		sc_regSet(F_BOUNDS, 1);
     
-    clearInput();
-    close(term);
+    clearInput();;
 }
 
 void inputMemory()
 {
-	int term = open(TERM, O_RDWR);
-	
     int com = 0, oper = 0, value;
     sc_memoryGet(memoryPointer, &value);
     sc_commandDecode(value, &com, &oper);
@@ -46,5 +38,17 @@ void inputMemory()
     sc_commandEncode(com, oper, &value);
     sc_memorySet(memoryPointer, value); 
     clearInput();
-    close(term);
+}
+
+void clearInput()
+{
+    int term = open(TERM, O_RDWR);
+
+    int i;
+    mt_gotoXY (25, 1);
+    for (i = 0; i < 80; ++i)
+        write (term, " ", 1);
+    mt_gotoXY (25, 1);
+
+    close (term);
 }

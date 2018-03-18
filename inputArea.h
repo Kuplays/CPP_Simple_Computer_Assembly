@@ -4,5 +4,6 @@
 void inputAccum();
 void inputCounter();
 void userInputMemory();
+void clearInput();
 
 #endif
