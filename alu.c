@@ -24,17 +24,9 @@ int alu(int command, int operand)
 	switch (command) {
 				
 		case 30:
-			if (sc_memoryGet(operand, &value) == 0) {
-				if (value > 0x1FFF) {
-                    value = value & 0x1FFF; 
-                }
-                accumValue = accumValue + value;
-                if (accumValue > 0x1FFF) {
-                    accumValue = accumValue & 0x1FFF; 
-                    sc_regSet(F_OVERFLOW, 1); 
-                }
-            }
-			break;
+            accumValue = accumValue + operand;
+
+		break;
 
 		
 		default:
@@ -64,6 +56,11 @@ int cu()
 		switch(command) {
 			case 40:
 			memoryPointer = operand;
+			break;
+
+			default:
+			alu(command, operand);
+			++memoryPointer;
 			break;	
 		}
 	}				

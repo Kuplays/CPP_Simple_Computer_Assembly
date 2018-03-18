@@ -110,7 +110,7 @@ int sc_commandEncode(int command, int operand, int *value) {
 }
 
 int sc_commandDecode(int value, int *command, int* operand) {
-	if (value == NULL || command == NULL || operand == NULL) {
+	if (!value || value >> 16 || !command || !operand) {
 		sc_regSet(F_WRONG_COM, 1);
 
 		return -1;
