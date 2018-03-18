@@ -75,7 +75,7 @@ int sc_memoryLoad(char *fName) {
 }
 
 int sc_regSet(int regFlag, int value) {
-	if (value < 0 || value > 1 || regFlag < 1 || regFlag > 2) //ADD MORE FLAGS
+	if (value < 0 || value > 1 || regFlag < 1 || regFlag > 6) //ADD MORE FLAGS
 		return -1;
 	
 	if (value == 1)
@@ -87,7 +87,7 @@ int sc_regSet(int regFlag, int value) {
 }
 
 int sc_regGet(int regFlag, int *value) {
-	if (regFlag < 0 || regFlag > 2)
+	if (regFlag < 0 || regFlag > 6)
 		return -1;
 
 	*value = (REG >> (regFlag -1)) & 0x1;

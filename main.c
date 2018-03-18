@@ -19,21 +19,23 @@ int main()
 {
     signal (SIGALRM, signalhandler);
     signal (SIGUSR1, reset);
-	
-	sc_memoryInit();
-    sc_regInit();
 
-    termInit();
-
+    enum Keys key = NONE;
+    flag_key = 0;
+    flag_ign = 0;
     accumValue = 0;
     opCounter = 0;
 
-    enum Keys key = NONE;
+    nval.it_interval.tv_sec  = 1;
+    nval.it_interval.tv_usec = 0;
+    nval.it_value.tv_sec  = 1;
+	nval.it_value.tv_usec = 0; 
+	
+	sc_memoryInit();
+    sc_regInit();
+    termInit();
 
 	showAll();
-    
-    flag_key = 0;
-    flag_ign = 0;
     
     while (key != QUIT) {
 		
@@ -58,7 +60,7 @@ int main()
 				timerStart();        
 			}
 			
-			if (key == RIGHT) if (memoryPointer < 99) ++memoryPointer; mt_gotoXY(25, 1);
+			if (key == RIGHT) if (memoryPointer < 99) ++memoryPointer;
 			if (key == LEFT) if (memoryPointer >  0) --memoryPointer;
 			if (key == UP) if (memoryPointer - 10 >=  0) memoryPointer -= 10;
 			if (key == DOWN) if (memoryPointer + 10 < 100) memoryPointer += 10;
