@@ -63,9 +63,9 @@ int main()
 			if (key == UP) if (memoryPointer - 10 >=  0) memoryPointer -= 10;
 			if (key == DOWN) if (memoryPointer + 10 < 100) memoryPointer += 10;
 
-			if (key == F5) inputAccum();
-			if (key == F6) inputCounter();
-			if (key == EDIT) inputMemory(); 
+			if (key == F5) displayBox("ACCUM", 1);
+			if (key == F6) displayBox("COUNTER", 2);
+			if (key == EDIT) displayBox("EDIT CELL", 3);
 
 			if (key == LOAD) sc_memoryLoad("mem.dat");
 			if (key == SAVE) sc_memorySave("mem.dat");

@@ -7,37 +7,43 @@
 #include "inputArea.h"
 #include "UserInterface.h"
 #include "myTerm.h"
+#include "myBigChars.h"
 
-void inputAccum()
-{
-    printf("ENTER ACUUM VALUE: ");
-    scanf("%d", &accumValue);
+void displayBox(char *title, int type) {
+    mt_setbgColor(WHITE);
+    mt_setfgColor(BLACK);
+    bc_box(10, 8, 3, 65);
+    mt_gotoXY(11, 9);
+    printf("                                                               ");
+    mt_gotoXY(10, 10);
+    printf(title);
+    mt_gotoXY(11, 9);
+    printf("INPUT VALUE: ");
 
-    clearInput();
-}
+    if (type == 1) {
+        scanf("%d", &accumValue);
+    }
 
-void inputCounter()
-{
-    printf("ENTER COUNTER: ");
-    scanf("%d", &opCounter);
-    if(opCounter >= 0 && opCounter < MEM_COUNT)
-		memoryPointer = opCounter;
-	else
-		sc_regSet(F_BOUNDS, 1);
-    
-    clearInput();;
-}
+    else if (type == 2) {
+        scanf("%d", &opCounter);
+        if(opCounter >= 0 && opCounter < MEM_COUNT) memoryPointer = opCounter;
+        else
+            sc_regSet(F_BOUNDS, 1);
+    }
 
-void inputMemory()
-{
-    int com = 0, oper = 0, value;
-    sc_memoryGet(memoryPointer, &value);
-    sc_commandDecode(value, &com, &oper);
-    printf("ENCODE: ");
-    scanf("%d %d", &com, &oper);
-    sc_commandEncode(com, oper, &value);
-    sc_memorySet(memoryPointer, value); 
-    clearInput();
+    else if (type == 3) {
+        int com = 0, oper = 0, value;
+        sc_memoryGet(memoryPointer, &value);
+        sc_commandDecode(value, &com, &oper);
+        mt_gotoXY(11, 9);
+        printf("ENCODE(COM, OPER): ");
+        scanf("%d %d", &com, &oper);
+        sc_commandEncode(com, oper, &value);
+        sc_memorySet(memoryPointer, value); 
+    }
+
+    mt_setfgColor(DEFAULT);
+    mt_setbgColor(DEFAULT);
 }
 
 void clearInput()
