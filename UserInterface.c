@@ -55,11 +55,14 @@ void displayCounter() {
 }
 
 void displayOperation() {
+	int com = 0, oper = 0, val = 0;
 	bc_box(7, 63, 3, 18);
 	mt_gotoXY(7, 65);
 	printf("OPER");
-	mt_gotoXY(8, 65);
-	sc_memoryGet(memoryPointer, &value);
+	mt_gotoXY(8, 67);
+	sc_memoryGet(memoryPointer, &val);
+	if (val != 0) sc_commandDecode(val, &com, &oper);
+	printf("+%02d : %02X", com, oper);
 
 	mt_gotoXY(25, 1);
 }
