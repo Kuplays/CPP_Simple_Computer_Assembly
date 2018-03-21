@@ -16,69 +16,81 @@
 #include "alu.h"
 #include "centralUnit.h"
 
+#include "geometry.h"
+
 int main()
 {
-    signal (SIGALRM, signalhandler);
-    signal (SIGUSR1, reset);
+	tLBA lba;
+	tCHS chs;
+	chs.sectorSize = 512;
+	lba.sectorSize = 512;
+	lba.sectors = 10018890;
 
-    enum Keys key = NONE;
-    flag_key = 0;
-    flag_ign = 0;
-    accumValue = 0;
-    opCounter = 0;
+	g_lba2chs(lba, &chs);
+	chs_printData(chs);
+	g_chs2lba(chs, &lba);
 
-    setTimerVals(1, 0);
+ //    signal (SIGALRM, signalhandler);
+ //    signal (SIGUSR1, reset);
+
+ //    enum Keys key = NONE;
+ //    flag_key = 0;
+ //    flag_ign = 0;
+ //    accumValue = 0;
+ //    opCounter = 0;
+
+ //    setTimerVals(1, 0);
 	
-	sc_memoryInit();
-    sc_regInit();
-    termInit();
+	// sc_memoryInit();
+ //    sc_regInit();
+ //    termInit();
 
-	showAll();
+	// showAll();
     
-    while (key != QUIT) {
+ //    while (key != QUIT) {
 		
-		rk_readKey(&key);
+	// 	rk_readKey(&key);
 		
-		if (key == STEP) {
-			sc_regSet(F_ISRUN, 0);
-			alarm(0); 
-			flag_key = 0;
-			cu_callBack();
-		}
+	// 	if (key == STEP) {
+	// 		sc_regSet(F_ISRUN, 0);
+	// 		alarm(0); 
+	// 		flag_key = 0;
+	// 		cu_callBack();
+	// 	}
 		
-		if (!flag_key) {
-			if (key == RUN)  {
-				sc_regSet(F_ISRUN, 1);
-				sc_regSet(F_IGNORE_FLAG, 0);
-			}
+	// 	if (!flag_key) {
+	// 		if (key == RUN)  {
+	// 			sc_regSet(F_ISRUN, 1);
+	// 			sc_regSet(F_IGNORE_FLAG, 0);
+	// 		}
 			
-			sc_regGet(F_ISRUN, &flag_key);
+	// 		sc_regGet(F_ISRUN, &flag_key);
 			
-			if (flag_key) {
-				timerStart();        
-			}
+	// 		if (flag_key) {
+	// 			timerStart();        
+	// 		}
 			
-			if (key == RIGHT) if (memoryPointer < 99) ++memoryPointer;
-			if (key == LEFT) if (memoryPointer >  0) --memoryPointer;
-			if (key == UP) if (memoryPointer - 10 >=  0) memoryPointer -= 10;
-			if (key == DOWN) if (memoryPointer + 10 < 100) memoryPointer += 10;
+	// 		if (key == RIGHT) if (memoryPointer < 99) ++memoryPointer;
+	// 		if (key == LEFT) if (memoryPointer >  0) --memoryPointer;
+	// 		if (key == UP) if (memoryPointer - 10 >=  0) memoryPointer -= 10;
+	// 		if (key == DOWN) if (memoryPointer + 10 < 100) memoryPointer += 10;
 
-			if (key == F5) displayBox("ACCUM", 1);
-			if (key == F6) displayBox("COUNTER", 2);
-			if (key == EDIT) displayBox("EDIT CELL", 3);
+	// 		if (key == F5) displayBox("ACCUM", 1);
+	// 		if (key == F6) displayBox("COUNTER", 2);
+	// 		if (key == EDIT) displayBox("EDIT CELL", 3);
 
-			if (key == LOAD) sc_memoryLoad("mem.dat");
-			if (key == SAVE) sc_memorySave("mem.dat");
+	// 		if (key == LOAD) sc_memoryLoad("mem.dat");
+	// 		if (key == SAVE) sc_memorySave("mem.dat");
 
-			if (key == RESET) {
-				sc_memoryInit();
-				sc_regInit();
-			}
+	// 		if (key == RESET) {
+	// 			sc_memoryInit();
+	// 			sc_regInit();
+	// 		}
 
-			showAll();
-		}
+	// 		showAll();
+	// 	}
 		
-	}
+	// }
     
 	return 0;
 }
